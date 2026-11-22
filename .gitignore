@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Archivos de entorno
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Build
+build/
+dist/
+*.egg-info/

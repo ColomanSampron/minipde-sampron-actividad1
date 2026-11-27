@@ -2,6 +2,8 @@ import numpy as np
 
 from minipde.mesh import create_uniform_mesh
 from models.diffusion_stationary import StationaryDiffusionProblem
+from minipde.operators import assemble_interior
+from minipde.operators import assemble_system
 
 
 def conductivity(x):
@@ -32,6 +34,21 @@ def main():
     )
 
     x, interfaces, dx = create_uniform_mesh(problem.L, 5)
+    A, b = assemble_system(
+        problem,
+        x,
+        interfaces,
+        dx
+    )
+
+    print("\nComplete matrix A:")
+    print(A)
+
+    print("\nComplete vector b:")
+    print(b)
+
+    print("\nMatrix shape:", A.shape)
+    print("Vector shape:", b.shape)
 
     k_values = problem.evaluate_conductivity(x)
     q_values = problem.evaluate_source(x)
